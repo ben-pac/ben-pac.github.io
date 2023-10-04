@@ -5,8 +5,8 @@
 	"eula": "",
 	"vendor": "DatArt SA",
 	"license": "",
-	"id": "TestWidget",
-	"version": "1.0.0",
+	"id": "ch.datart.testwidget",
+	"version": "1.0.1",
 	"icon": "",
 	"webcomponents": [
 		{
