@@ -1,0 +1,41 @@
+{
+	"name": "testwidget",
+	"description": "Hello World",
+	"newInstancePrefix": "testWidget",
+	"eula": "",
+	"vendor": "DatArt SA",
+	"license": "",
+	"id": "TestWidget",
+	"version": "1.0.0",
+	"icon": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "custom-button",
+			"url": "https://ben-pac.github.io/TestWidget/TestWidget.js",
+			"integrity": ""	,
+			"ignoreIntegrity": true
+
+		}
+	],
+	"properties": {
+		"width": {
+			"type": "integer",
+			"default": 192
+		},
+		"height": {
+			"type": "integer",
+			"default": 32
+		}
+	},
+	"methods": {
+		"clear": {
+			"description": "Clear the resultset"
+		}
+	},
+	"events": {
+		"onClick": {
+			"description": "Called when the user clicks the button."
+		}
+	}
+}
