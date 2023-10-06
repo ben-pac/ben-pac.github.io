@@ -21,9 +21,16 @@
             this.dispatchEvent(newEvent);
             });
         }
+        onCustomWidgetAfterUpdate(changedProperties) {
+            if ("testDataBinding" in changedProperties) {
+                console.log(changedProperties)
+                console.log(changedProperties.testDataBinding)
+            }
+        }
 
         fireChanged() {
             console.log("OnClick Triggered");
+
         }
 
     }
