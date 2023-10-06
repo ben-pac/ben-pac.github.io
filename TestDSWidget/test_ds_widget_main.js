@@ -22,6 +22,7 @@
             });
         }
         onCustomWidgetAfterUpdate(changedProperties) {
+            console.log('on custom widget after update', changedProperties)
             if ("testDataBinding" in changedProperties) {
                 console.log(changedProperties)
                 console.log(changedProperties.testDataBinding)
