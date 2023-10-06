@@ -1,0 +1,39 @@
+{
+	"id": "ch.datart.testdswidget",
+	"version": "1.0.0",
+	"name": "DataBindingWidget",
+	"description": "A Widget with data binding",
+	"newInstancePrefix": "dataBindingWidget",
+	"icon": "https://ben-pac.github.io/TestDSWidget/bulb.svg",
+	"vendor": "DatArt SA",
+	"eula": "",
+	"license": "",
+	"webcomponents": [
+		{
+			"kind": "main",
+			"tag": "ch-datart-test-ds-widget-1",
+			"url": "https://ben-pac.github.io/TestDSWidget/test_ds_widget_main.js",
+			"integrity": "",
+			"ignoreIntegrity": true
+		}
+	],
+	"properties": {
+
+	},
+	"methods": {
+
+	},
+	"events": {
+
+	},
+	"dataBindings": {
+		"feeds": [
+			{
+				"id": "testDataBinding",
+				"type": "dimension",
+				"description": "Test Data Binding"
+			}
+		]
+	}
+}
+
