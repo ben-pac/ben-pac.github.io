@@ -20,6 +20,7 @@
             this.fireChanged();
             this.dispatchEvent(newEvent);
             });
+            this._props = {};
         }
         onCustomWidgetAfterUpdate(changedProperties) {
             console.log('on custom widget after update', changedProperties)
@@ -28,10 +29,13 @@
                 console.log(changedProperties.testDataBinding)
             }
         }
-
+        onCustomWidgetBeforeUpdate(changedProperties) {
+            console.log('on custom before', changedProperties)
+            this._props = { ...this._props, ...changedProperties };
+        }
         fireChanged() {
             console.log("OnClick Triggered");
-
+            console.log('props', this._props)
         }
 
     }
