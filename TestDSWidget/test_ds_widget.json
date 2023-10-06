@@ -24,16 +24,22 @@
 
 	},
 	"events": {
-
 	},
 	"dataBindings": {
-		"feeds": [
-			{
-				"id": "testDataBinding",
-				"type": "dimension",
-				"description": "Test Data Binding"
-			}
-		]
+		"testDataBinding": {
+			"feeds": [
+				{
+					"id": "dimensions",
+					"type": "dimension",
+					"description": "Dimensions"
+				},
+				{
+					"id": "measures",
+					"type": "mainStructureMember",
+					"description": "Measures"
+				}
+			]
+		}
 	}
 }
 
