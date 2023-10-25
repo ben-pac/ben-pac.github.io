@@ -60,6 +60,7 @@ var getScriptPromisify = (src) => {
 
       this._baseURL = window.location.origin;
       //EDIT THESE VALUES: Import Service values
+      console.log(this._baseURL);
       this._tokenURL = '';
       this._clientID = '';
       this._secret = '';
