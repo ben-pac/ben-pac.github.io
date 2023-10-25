@@ -12,7 +12,8 @@
       {
         "kind": "main",
         "tag": "com-sap-sample-uploadxls",
-        "url": "/uploadXLS.js",
+        "url": "https://ben-pac.github.io/SAPUploadXLS/uploadXLS.js",
+        "integrity": "",
         "ignoreIntegrity": true
       }
     ],
