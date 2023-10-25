@@ -1,0 +1,299 @@
+{
+    "eula": "",
+    "vendor": "SAP&DatArt",
+    "license": "",
+    "id": "com.sap.sample.uploadxls",
+    "version": "2.0.1",
+    "name": "Upload XLS",
+    "newInstancePrefix": "UploadXLS",
+    "description": "A sample widget that allows users to upload a file",
+    "imports": ["table", "input-controls","planning","datasource"],
+    "webcomponents": [
+      {
+        "kind": "main",
+        "tag": "com-sap-sample-uploadxls",
+        "url": "/uploadXLS.js",
+        "ignoreIntegrity": true
+      }
+    ],
+  "properties":{},
+  "types": {
+    "JobStatus":{
+      "description": "Job Status Enum",
+      "extends": "Enum",
+      "properties": [
+				{"name": "NOT_STARTED"},
+        {"name": "READY_FOR_WRITE"},
+        {"name": "PROCESSING"},
+        {"name": "COMPLETED"},
+        {"name": "COMPLETED_WITH_FAILURES"},
+        {"name": "FAILED"}
+      ]
+
+    },
+      "UploadResult":{
+        "description":"Holds the result of the Upload request",
+        "properties":[
+        {
+          "name":"currentStep",
+          "description":"Current Step of the Test",
+          "type":"string",
+          "mandatory":false
+        },
+        {
+          "name":"jobId",
+          "description":"ID of created Job",
+          "type":"string",
+          "mandatory":false
+          },
+          {
+          "name":"baseURL",
+          "description":"SAC URL",
+          "type":"string",
+          "mandatory":false
+          },
+          {
+          "name":"modelId",
+          "description":"ID of SAC model",
+          "type":"string",
+          "mandatory":false
+          },
+          {
+          "name":"mapping",
+          "description":"Mappings used",
+          "type":"Selection",
+          "mandatory":false
+          },
+          {
+          "name":"defaultValues",
+          "description":"Default Values used",
+          "type":"Selection",
+          "mandatory":false
+          },
+          {
+          "name":"data",
+          "description":"Data that was uploaded",
+          "type":"Selection[]",
+          "mandatory":false
+          },
+          {
+          "name":"httpStatus",
+          "description":"Http Status",
+          "type":"string",
+          "mandatory":false
+          },
+          {
+          "name":"totalNumberRowsInJob",
+          "description":"Total Number of Rows",
+          "type":"integer",
+          "mandatory":false
+          },
+          {
+          "name":"failedNumberRows",
+          "description":"Failed Number of Rows",
+          "type":"integer",
+          "mandatory":false
+          },
+          {
+          "name":"failedRows",
+          "description":"Failed Rows",
+          "type":"FailedRow[]",
+          "mandatory":false
+          },
+          {
+          "name":"jobStatus",
+          "description":"Job Status",
+          "type":"JobStatus",
+          "mandatory":false
+          },
+          {
+          "name":"body",
+          "description":"Body returned by the request",
+          "type":"Selection",
+          "mandatory":false
+          },
+			  {
+				"name":"errorMessage",
+				"description":"Error Message returned by the request",
+				"type":"string",
+				"mandatory":false
+			  }
+      ]
+      },
+      "FailedRow":{
+        "description":"Holds the result of the Upload Test",
+        "properties":[
+          {
+          "name":"row",
+          "description":"Data that was attempted to be uploaded in JSON format",
+          "type":"Selection",
+          "mandatory":false
+          },
+          {
+          "name":"rowAsString",
+          "description":"Data that was attempted to be uploaded in formatted String",
+          "type":"string",
+          "mandatory":false
+          },
+          {
+          "name":"reason",
+          "description":"Reason for error",
+          "type":"string",
+          "mandatory":false
+          }
+        ]
+      }
+    
+  },
+    "methods": {
+      "downloadFailedRecords": {
+        "description": "downloads the failed records as an XLS file."
+      } ,
+      "downloadCustomFailedRecords":{
+        "description": "downloads ResultSet as an Excel file.",
+        "parameters": [
+          {
+            "name": "failedRows",
+            "type": "ResultSet[]",
+            "description": "Array of ResultSet of failed rows"
+          }
+        ]
+      },
+      "getChunkSize": {
+        "returnType": "integer",
+        "description": "returns chunk size used for batch processing."
+      },
+      "getCurrentBatchStartingNumber": {
+        "returnType": "integer",
+        "description": "returns starting index of current batch."
+      },
+      "getTotalRows": {
+        "returnType": "integer",
+        "description": "returns number of rows in the data.",
+        "parameters": [
+          {
+            "name": "sheetName",
+            "type": "string",
+            "description": "Name of sheet to retrieve data for"
+          }
+        ]
+      },
+      "getUploadResult": {
+        "returnType": "UploadResult",
+        "description": "Returns the array of Failed records."
+        
+      },
+      "getData": {
+        "returnType": "Selection[]",
+        "description": "Returns the Data string.",
+        "parameters": [
+          {
+            "name": "sheetName",
+            "type": "string",
+            "description": "Name of sheet to retrieve data for"
+          }
+        ]
+      },  
+      "getSheetNames": {
+        "returnType": "string[]",
+        "description": "Returns the array of worksheet names."        
+      },
+      "setChunkSize": {
+        "parameters": [{"name": "chunkSize", "type": "integer","description": "Maximum number of rows of data to include in each upload batch"}],
+        "description": "Sets the Chunk size"
+      }, 
+      "setModelId": {
+        "parameters": [{"name": "modelId", "type": "string","description": "String representing the Model ID"}],
+        "description": "Sets the ModelId"
+      },
+      "setBaseURL": {
+        "parameters": [{"name": "url", "type": "string","description": "String representing the Base URL"}],
+        "description": "Sets the URL"
+      },
+      "setOAuthParameters":{
+        "returnType": "string",
+        "parameters": [
+          {"name": "tokenURL", "type": "string"},
+          {"name": "clientID", "type": "string"},
+          {"name": "secret", "type": "string"}
+      ],
+      "description": "Returns the logon token using the OAuth parameters."  
+      },
+      "setUseServiceAccount": {
+        "parameters": [{"name": "useServiceAccount", "type": "boolean","description": "Boolean indicating whether to use the Service Account or SSO"}],
+        "description": "Indicates whether to use the Service Account or SSO"
+      },
+      "uploadData":{
+        "description": "Uploads the selected File to SAC.",
+        "parameters": [
+          {
+            "name": "mapping",
+            "type": "Selection",
+            "description": "JSON object representing mapping of Column names in the spreadsheet to Dimension/Measure names in the model"
+          },
+          {
+            "name": "defaultValues",
+            "type": "Selection",
+            "description": "JSON object representing default values for Dimensions that exist in the model but do NOT appear in the spreadsheet"
+          },
+          {
+            "name": "reverseSigns",
+            "type": "boolean",
+            "description": "Set to true if your INC or AST account values are being uploaded as positive values and false if they are being uploaded as negative values"
+          },
+          {
+            "name": "sheetName",
+            "type": "string",
+            "description": "If your Excel file has multiple sheets then use this to pass in the name of the sheet to use"
+          },
+          {
+            "name": "useFiscalDate",
+            "type": "boolean",
+            "description": "Set to true if the date values are being passed as Fiscal Dates"
+          }
+        ]
+      },
+      "uploadCurrencyRates":{
+        "description": "Uploads the selected File to an SAC Currency Rate table.",
+        "parameters": [
+          {
+            "name": "currencyTable",
+            "type": "string",
+            "description": "Name of the Currency Rate table"
+          },
+          {
+            "name": "mapping",
+            "type": "Selection",
+            "description": "JSON object representing mapping of Column names in the spreadsheet to Dimension/Measure names in the model"
+          },
+          {
+            "name": "defaultValues",
+            "type": "Selection",
+            "description": "JSON object representing default values for Dimensions that exist in the model but do NOT appear in the spreadsheet"
+          },
+          {
+            "name": "sheetName",
+            "type": "string",
+            "description": "If your Excel file has multiple sheets then use this to pass in the name of the sheet to use"
+          }
+        ]
+      }          
+    },
+    "events": {
+      "onFileUpload": {
+        "description": "Called when a file has been selected by the user."
+      },
+      "onDataUpload": {
+        "description": "Called when data has been uploaded to SAC."
+      },
+      "onCancel": {
+        "description": "Called when the user cancels the file upload."
+      },
+      "onFailedUpload": {
+        "description": "Called when data upload failed."
+      },
+      "onBatchUpload": {
+        "description": "Called when data batch is uploaded."
+      }
+    }
+  }
